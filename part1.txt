@@ -1,0 +1,19 @@
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Threading;
+using System.Windows.Forms;
+ 
+    static class Program
+{
+	// variáveis de instãncia
+	static object oExcel = null;
+	static object oBooks = null;
+	static object oBook = null;
+	static object oMissing = System.Reflection.Missing.Value;
+	static System.Globalization.CultureInfo ci = Thread.CurrentThread.CurrentCulture;
+ 
+	[STAThread]
+	static void Main()
+	{
+		string CaminhoDoArquivo = @

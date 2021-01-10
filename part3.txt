@@ -1,0 +1,50 @@
+if (ExcelEstaInstalado())
+		{
+			try
+			{
+				if (System.IO.File.Exists(CaminhoDoArquivo))
+				{
+					AbrirArquivo(CaminhoDoArquivo); 
+				}
+				else
+				{
+					MessageBox.Show(string.Format("O arquivo {0} não foi encontrado", CaminhoDoArquivo));
+				}
+			}
+			catch (System.IO.IOException)
+			{
+				MessageBox.Show("Erro de acesso ao arquivo. Verifique o arquivo de configuração ou as permissões de pasta");
+			}
+		}
+		else
+		{
+			MessageBox.Show("Não foi possível encontrar a instalação do Microsoft Excel no seu computador");
+		}
+ 
+		Application.Exit();
+	}
+ 
+	private static void AbrirArquivo(string caminhoDoArquivo)
+	{
+		object oFileName = caminhoDoArquivo;
+		oExcel = Activator.CreateInstance(Type.GetTypeFromProgID("Excel.Application"));
+		oExcel.GetType().InvokeMember("AutomationSecurity", BindingFlags.SetProperty, null, oExcel, new object[] { 1 }, ci);
+		oExcel.GetType().InvokeMember("Visible", BindingFlags.SetProperty, null, oExcel, new object[] { true }, ci);
+		oBooks = oExcel.GetType().InvokeMember("Workbooks", BindingFlags.GetProperty, null, oExcel, null, ci);
+		oBook = oBooks.GetType().InvokeMember("Open", BindingFlags.InvokeMethod, null, oBooks, new object[] { oFileName, oMissing, false }, ci);
+	}
+ 
+	public static bool ExcelEstaInstalado()
+	{
+		Type officeType = Type.GetTypeFromProgID("Excel.Application");
+ 
+		if (officeType == null)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+}
