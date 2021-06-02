@@ -1,6 +1,6 @@
 # Controle de Estoque
 
-Todo o projeto foi dezenvolvido por projeto pessoal. O uso é livre para estudos. Qualquer comercialização é repudiada.]: 
+Todo o projeto foi dezenvolvido por projeto pessoal. O uso é livre para estudos. Qualquer comercialização é repudiada. 
 
 
 
